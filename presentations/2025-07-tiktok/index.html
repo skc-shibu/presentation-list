@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTokのこれまでとこれから</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts (M PLUS Rounded 1c) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome (for Icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- GSAP (Animation Library) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+    <style>
+        /* カスタムスタイル */
+        body {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            overflow: hidden;
+            /* スクロールバーを非表示 */
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 4rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.8s ease-in-out, visibility 0.8s;
+            overflow: hidden;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .text-shadow {
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .neon-text {
+            text-shadow:
+                0 0 5px #fff,
+                0 0 10px #fff,
+                0 0 20px #00f,
+                0 0 30px #00f,
+                0 0 40px #00f,
+                0 0 55px #00f,
+                0 0 75px #00f;
+        }
+
+        .progress-dots button.active {
+            transform: scale(1.5);
+            background-color: #2563eb;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 text-white">
+
+    <main id="presentation-container" class="relative w-full h-screen">
+
+        <!-- Slide 1: Title -->
+        <section id="slide-1" class="slide active bg-gradient-to-br from-black via-gray-900 to-black">
+            <div class="absolute inset-0 z-0">
+                <div
+                    class="absolute top-1/4 left-1/4 w-32 h-32 bg-[#00f2ea] rounded-full mix-blend-screen filter blur-3xl opacity-70 animate-blob">
+                </div>
+                <div
+                    class="absolute top-1/2 right-1/4 w-32 h-32 bg-[#ff0050] rounded-full mix-blend-screen filter blur-3xl opacity-70 animate-blob animation-delay-2000">
+                </div>
+            </div>
+            <div class="text-center z-10">
+                <div class="flex justify-center items-center mb-6 slide-1-element">
+                    <i class="fab fa-tiktok text-7xl text-[#00f2ea] text-shadow"></i>
+                    <span class="text-7xl mx-4 text-shadow">+</span>
+                    <i class="fab fa-tiktok text-7xl text-[#ff0050] text-shadow"></i>
+                </div>
+                <h1 class="text-6xl md:text-8xl font-extrabold mb-4 slide-1-element text-shadow">TikTok</h1>
+                <h2 class="text-3xl md:text-5xl font-bold slide-1-element text-shadow">そのこれまでと、これから</h2>
+            </div>
+        </section>
+
+        <!-- Slide 2: What is TikTok? -->
+        <section id="slide-2" class="slide bg-gray-100 text-gray-800">
+            <div class="w-full max-w-6xl">
+                <h2 class="text-5xl font-bold text-center mb-12 slide-2-element">TikTokとは？</h2>
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div class="p-6 rounded-xl shadow-lg bg-white slide-2-element">
+                        <i class="fas fa-video text-5xl text-blue-500 mb-4"></i>
+                        <h3 class="text-2xl font-bold mb-2">短尺動画</h3>
+                        <p>15秒から数分の動画が中心。手軽に視聴・投稿できる。</p>
+                    </div>
+                    <div class="p-6 rounded-xl shadow-lg bg-white slide-2-element">
+                        <i class="fas fa-music text-5xl text-purple-500 mb-4"></i>
+                        <h3 class="text-2xl font-bold mb-2">音楽とトレンド</h3>
+                        <p>BGMがコンテンツの核。ダンスやチャレンジが流行を生む。</p>
+                    </div>
+                    <div class="p-6 rounded-xl shadow-lg bg-white slide-2-element">
+                        <i class="fas fa-brain text-5xl text-green-500 mb-4"></i>
+                        <h3 class="text-2xl font-bold mb-2">強力なアルゴリズム</h3>
+                        <p>ユーザーの好みを学習し、「おすすめ」フィードを最適化。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 3: Timeline -->
+        <section id="slide-3" class="slide bg-gray-800">
+            <div class="w-full max-w-5xl">
+                <h2 class="text-5xl font-bold text-center mb-16 slide-3-element text-white">誕生と急成長</h2>
+                <div class="relative border-l-4 border-cyan-400 ml-6">
+                    <!-- Item 1 -->
+                    <div class="mb-12 ml-12 slide-3-item">
+                        <div class="absolute -left-9 w-8 h-8 bg-cyan-400 rounded-full border-4 border-gray-800"></div>
+                        <h3 class="text-2xl font-bold text-cyan-300">2016年</h3>
+                        <p class="text-lg">中国で「抖音 (Douyin)」としてサービス開始。</p>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="mb-12 ml-12 slide-3-item">
+                        <div class="absolute -left-9 w-8 h-8 bg-cyan-400 rounded-full border-4 border-gray-800"></div>
+                        <h3 class="text-2xl font-bold text-cyan-300">2017年</h3>
+                        <p class="text-lg">国際版「TikTok」をリリース。musical.lyを買収。</p>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="mb-12 ml-12 slide-3-item">
+                        <div class="absolute -left-9 w-8 h-8 bg-cyan-400 rounded-full border-4 border-gray-800"></div>
+                        <h3 class="text-2xl font-bold text-cyan-300">2018年</h3>
+                        <p class="text-lg">musical.lyと統合し、グローバル展開を加速。</p>
+                    </div>
+                    <!-- Item 4 -->
+                    <div class="ml-12 slide-3-item">
+                        <div class="absolute -left-9 w-8 h-8 bg-cyan-400 rounded-full border-4 border-gray-800"></div>
+                        <h3 class="text-2xl font-bold text-cyan-300">2020年〜</h3>
+                        <p class="text-lg">パンデミックを追い風に、世界的な社会現象へ。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: Algorithm -->
+        <section id="slide-4" class="slide bg-gradient-to-b from-blue-900 to-indigo-900">
+            <div class="text-center">
+                <h2 class="text-5xl font-bold mb-4 slide-4-element">成功の要因①</h2>
+                <h3 class="text-6xl font-extrabold mb-12 slide-4-element neon-text tracking-wider">アルゴリズム</h3>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4 max-w-4xl">
+                    <div class="p-6 rounded-lg text-center slide-4-element card">
+                        <i class="fas fa-user-check text-4xl text-cyan-300 mb-3"></i>
+                        <p class="font-bold">ユーザー行動</p>
+                        <p class="text-sm">いいね・コメント・視聴時間</p>
+                    </div>
+                    <i class="fas fa-arrow-right text-4xl text-white my-4 md:my-0 slide-4-arrow"></i>
+                    <div class="p-6 rounded-lg text-center slide-4-element card">
+                        <i class="fas fa-robot text-4xl text-cyan-300 mb-3"></i>
+                        <p class="font-bold">AIによる解析</p>
+                        <p class="text-sm">動画内容・音楽・ハッシュタグ</p>
+                    </div>
+                    <i class="fas fa-arrow-right text-4xl text-white my-4 md:my-0 slide-4-arrow"></i>
+                    <div class="p-6 rounded-lg text-center slide-4-element card">
+                        <i class="fas fa-gift text-4xl text-cyan-300 mb-3"></i>
+                        <p class="font-bold">「おすすめ」の最適化</p>
+                        <p class="text-sm">パーソナライズされた体験</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 5: UGC & Trends -->
+        <section id="slide-5" class="slide bg-white">
+            <div class="w-full max-w-6xl text-center">
+                <h2 class="text-5xl font-bold mb-4 slide-5-element text-gray-800">成功の要因②</h2>
+                <h3
+                    class="text-6xl font-extrabold mb-12 slide-5-element bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
+                    UGCとトレンド</h3>
+                <div class="grid md:grid-cols-2 gap-8 items-center">
+                    <div class="text-left text-gray-700 p-4 slide-5-element">
+                        <p class="text-xl mb-4"><i class="fas fa-users text-purple-500 mr-2"></i>
+                            誰でもクリエイターになれる文化が、多様なコンテンツ（UGC）を生み出します。</p>
+                        <p class="text-xl mb-4"><i class="fas fa-fire text-red-500 mr-2"></i>
+                            ハッシュタグチャレンジやダンス、リップシンクなどがバイラルに拡散。</p>
+                        <p class="text-xl"><i class="fas fa-chart-line text-green-500 mr-2"></i>
+                            ユーザー自身がトレンドの発信源となり、プラットフォームの活気を維持します。</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 slide-5-element">
+                        <div class="p-4 bg-pink-100 rounded-lg shadow-md transform -rotate-6">
+                            <p class="font-bold text-pink-700">#〇〇チャレンジ</p>
+                        </div>
+                        <div class="p-4 bg-blue-100 rounded-lg shadow-md transform rotate-3">
+                            <p class="font-bold text-blue-700">あるあるネタ</p>
+                        </div>
+                        <div class="p-4 bg-green-100 rounded-lg shadow-md transform rotate-2">
+                            <p class="font-bold text-green-700">Vlog</p>
+                        </div>
+                        <div class="p-4 bg-yellow-100 rounded-lg shadow-md transform -rotate-3">
+                            <p class="font-bold text-yellow-700">検証動画</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Social Impact -->
+        <section id="slide-6" class="slide bg-gray-200 text-gray-800">
+            <div class="w-full max-w-6xl">
+                <h2 class="text-5xl font-bold text-center mb-12 slide-6-element">社会へのインパクト</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center p-6 slide-6-element">
+                        <i class="fas fa-comments text-6xl text-blue-600 mb-4"></i>
+                        <h3 class="text-2xl font-bold mb-2">コミュニケーション</h3>
+                        <p>Z世代の主要な情報収集・交流ツールに。新たな言語や文化が生まれる。</p>
+                    </div>
+                    <div class="text-center p-6 slide-6-element">
+                        <i class="fas fa-compact-disc text-6xl text-red-600 mb-4"></i>
+                        <h3 class="text-2xl font-bold mb-2">音楽業界</h3>
+                        <p>TikTok発のヒット曲がチャートを席巻。アーティストの新たなプロモーションの場に。</p>
+                    </div>
+                    <div class="text-center p-6 slide-6-element">
+                        <i class="fas fa-bullhorn text-6xl text-yellow-600 mb-4"></i>
+                        <h3 class="text-2xl font-bold mb-2">マーケティング</h3>
+                        <p>「TikTok売れ」という現象。企業と消費者の新たな接点を創出。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Issues & Controversies -->
+        <section id="slide-7" class="slide bg-red-900 bg-opacity-80">
+            <div class="text-center w-full max-w-4xl">
+                <h2 class="text-5xl font-bold mb-12 slide-7-element"><i
+                        class="fas fa-exclamation-triangle mr-4"></i>課題と論争</h2>
+                <div class="space-y-6">
+                    <div class="p-4 border-2 border-yellow-300 rounded-lg slide-7-element">
+                        <h3 class="text-2xl font-bold">データプライバシーと安全保障</h3>
+                        <p>個人情報の取り扱いや、中国政府との関連性が懸念されている。</p>
+                    </div>
+                    <div class="p-4 border-2 border-yellow-300 rounded-lg slide-7-element">
+                        <h3 class="text-2xl font-bold">コンテンツの安全性</h3>
+                        <p>不適切な動画や偽情報の拡散、若年層への影響が問題視される。</p>
+                    </div>
+                    <div class="p-4 border-2 border-yellow-300 rounded-lg slide-7-element">
+                        <h3 class="text-2xl font-bold">各国での規制</h3>
+                        <p>インドでの使用禁止や、アメリカでの規制法案など、地政学リスクに直面。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 8: The Future 1 -->
+        <section id="slide-8" class="slide bg-gradient-to-tr from-purple-900 via-black to-blue-900">
+            <div class="text-center w-full max-w-5xl">
+                <h2 class="text-5xl font-bold mb-4 slide-8-element">TikTokの「これから」①</h2>
+                <h3 class="text-4xl font-bold mb-12 slide-8-element text-cyan-300">機能拡張とスーパーアプリ化</h3>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="p-6 rounded-lg text-center slide-8-element card">
+                        <i class="fas fa-shopping-cart text-5xl text-green-400 mb-4"></i>
+                        <h4 class="text-2xl font-bold">Eコマース</h4>
+                        <p>動画から直接商品を購入できる「TikTok Shop」を強化。</p>
+                    </div>
+                    <div class="p-6 rounded-lg text-center slide-8-element card">
+                        <i class="fas fa-film text-5xl text-yellow-400 mb-4"></i>
+                        <h4 class="text-2xl font-bold">長尺動画</h4>
+                        <p>YouTubeと競合する、より長いコンテンツへの対応を進める。</p>
+                    </div>
+                    <div class="p-6 rounded-lg text-center slide-8-element card">
+                        <i class="fas fa-broadcast-tower text-5xl text-red-400 mb-4"></i>
+                        <h4 class="text-2xl font-bold">ライブストリーミング</h4>
+                        <p>クリエイターとファンの交流や、ライブコマースを促進。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 9: The Future 2 -->
+        <section id="slide-9" class="slide bg-gray-100 text-gray-800">
+            <div class="w-full max-w-5xl text-center">
+                <h2 class="text-5xl font-bold mb-4 slide-9-element">TikTokの「これから」②</h2>
+                <h3 class="text-4xl font-bold mb-12 slide-9-element text-blue-600">新たな領域への挑戦</h3>
+                <div class="flex flex-wrap justify-center gap-6">
+                    <div class="p-5 bg-white rounded-full shadow-lg flex items-center slide-9-element">
+                        <i class="fas fa-graduation-cap text-2xl text-green-500 mr-3"></i>
+                        <span class="text-xl font-semibold">教育・学習 (Edutok)</span>
+                    </div>
+                    <div class="p-5 bg-white rounded-full shadow-lg flex items-center slide-9-element">
+                        <i class="fas fa-briefcase text-2xl text-indigo-500 mr-3"></i>
+                        <span class="text-xl font-semibold">採用・キャリア</span>
+                    </div>
+                    <div class="p-5 bg-white rounded-full shadow-lg flex items-center slide-9-element">
+                        <i class="fas fa-cogs text-2xl text-gray-500 mr-3"></i>
+                        <span class="text-xl font-semibold">企業向けソリューション</span>
+                    </div>
+                    <div class="p-5 bg-white rounded-full shadow-lg flex items-center slide-9-element">
+                        <i class="fas fa-utensils text-2xl text-orange-500 mr-3"></i>
+                        <span class="text-xl font-semibold">フードデリバリー</span>
+                    </div>
+                </div>
+                <p class="mt-12 text-xl slide-9-element">エンタメを超え、生活のあらゆる場面に浸透するプラットフォームを目指す。</p>
+            </div>
+        </section>
+
+        <!-- Slide 10: Conclusion -->
+        <section id="slide-10" class="slide bg-black">
+            <div class="text-center">
+                <h2 class="text-5xl font-bold mb-8 slide-10-element">クリエイターエコノミーの中心へ</h2>
+                <p class="text-xl max-w-3xl mb-12 slide-10-element">
+                    課題を乗り越え、多様な機能と領域を巻き込みながら、<br>
+                    TikTokは単なる動画アプリから<br>
+                    <span class="text-cyan-300 font-bold text-2xl">次世代のカルチャーと経済圏を創る<br>巨大なエコシステム</span>へと進化を続ける。
+                </p>
+                <div class="slide-10-element">
+                    <i class="fab fa-tiktok text-6xl text-white animate-pulse"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 11: End -->
+        <section id="slide-11" class="slide bg-gradient-to-br from-black via-gray-900 to-black">
+            <div class="text-center">
+                <h2 class="text-6xl font-extrabold mb-8 slide-11-element text-shadow">ご清聴ありがとうございました</h2>
+                <p class="text-2xl text-gray-300 slide-11-element">Thank you for your attention.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Navigation -->
+    <nav class="absolute bottom-0 left-1/2 -translate-x-1/2 p-4 z-20">
+        <div
+            class="progress-dots flex items-center justify-center space-x-3 bg-black bg-opacity-30 px-4 py-2 rounded-full">
+            <!-- Dots will be generated by JS -->
+        </div>
+    </nav>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const slides = document.querySelectorAll('.slide');
+            const dotsContainer = document.querySelector('.progress-dots');
+            let currentSlide = 1;
+            const totalSlides = slides.length;
+
+            // Create progress dots
+            for (let i = 1; i <= totalSlides; i++) {
+                const dot = document.createElement('button');
+                dot.classList.add('w-3', 'h-3', 'bg-white', 'bg-opacity-50', 'rounded-full', 'transition-all', 'duration-300');
+                dot.dataset.slide = i;
+                dotsContainer.appendChild(dot);
+            }
+
+            const dots = document.querySelectorAll('.progress-dots button');
+
+            function showSlide(slideNumber) {
+                // Prevent out-of-bounds
+                if (slideNumber < 1 || slideNumber > totalSlides) return;
+
+                slides.forEach(slide => {
+                    slide.classList.remove('active');
+                });
+
+                const activeSlide = document.getElementById(`slide-${slideNumber}`);
+                activeSlide.classList.add('active');
+
+                dots.forEach(dot => {
+                    dot.classList.remove('active');
+                    if (dot.dataset.slide == slideNumber) {
+                        dot.classList.add('active');
+                    }
+                });
+
+                currentSlide = slideNumber;
+                runAnimations(currentSlide);
+            }
+
+            function runAnimations(slideNumber) {
+                // Reset common properties
+                gsap.set(".slide-1-element, .slide-2-element, .slide-3-element, .slide-3-item, .slide-4-element, .slide-4-arrow, .slide-5-element, .slide-6-element, .slide-7-element, .slide-8-element, .slide-9-element, .slide-10-element, .slide-11-element", { autoAlpha: 0, y: 30 });
+
+                switch (slideNumber) {
+                    case 1:
+                        gsap.to(".slide-1-element", {
+                            autoAlpha: 1,
+                            y: 0,
+                            duration: 0.8,
+                            stagger: 0.2,
+                            ease: "power2.out"
+                        });
+                        break;
+                    case 2:
+                        gsap.to(".slide-2-element", {
+                            autoAlpha: 1,
+                            y: 0,
+                            duration: 0.7,
+                            stagger: 0.2,
+                            ease: "power2.out",
+                            delay: 0.3
+                        });
+                        break;
+                    case 3:
+                        gsap.to(".slide-3-element", { autoAlpha: 1, y: 0, duration: 0.8, ease: "power2.out" });
+                        gsap.fromTo(".slide-3-item",
+                            { autoAlpha: 0, x: -50 },
+                            { autoAlpha: 1, x: 0, duration: 0.6, stagger: 0.3, ease: "back.out(1.7)", delay: 0.5 }
+                        );
+                        break;
+                    case 4:
+                        gsap.to(".slide-4-element", { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.2, delay: 0.3 });
+                        gsap.fromTo(".slide-4-arrow", { autoAlpha: 0, scale: 0 }, { autoAlpha: 1, scale: 1, duration: 0.5, delay: 1.2, stagger: 0.2 });
+                        break;
+                    case 5:
+                        gsap.to(".slide-5-element", { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.2, delay: 0.3 });
+                        gsap.fromTo(".slide-5-element .transform",
+                            { scale: 0, rotate: 0 },
+                            { scale: 1, rotate: (i) => (i % 2 === 0 ? -5 : 5) * (Math.random() + 0.5), duration: 0.8, ease: "elastic.out(1, 0.5)", stagger: 0.1, delay: 0.8 }
+                        );
+                        break;
+                    case 6:
+                        gsap.fromTo(".slide-6-element",
+                            { autoAlpha: 0, scale: 0.8 },
+                            { autoAlpha: 1, scale: 1, duration: 0.6, stagger: 0.2, ease: "back.out(1.7)", delay: 0.3 }
+                        );
+                        break;
+                    case 7:
+                        gsap.to(".slide-7-element", { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.2, delay: 0.3 });
+                        break;
+                    case 8:
+                        gsap.to(".slide-8-element", { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.2, delay: 0.3 });
+                        break;
+                    case 9:
+                        gsap.to(".slide-9-element", { autoAlpha: 1, y: 0, duration: 0.7, stagger: 0.2, delay: 0.3 });
+                        break;
+                    case 10:
+                        gsap.to(".slide-10-element", { autoAlpha: 1, y: 0, duration: 0.8, stagger: 0.3, delay: 0.3, ease: "power2.out" });
+                        break;
+                    case 11:
+                        gsap.to(".slide-11-element", {
+                            autoAlpha: 1,
+                            y: 0,
+                            duration: 0.8,
+                            stagger: 0.3,
+                            delay: 0.3,
+                            ease: "power2.out"
+                        });
+                        break;
+                }
+            }
+
+            // Event Listeners for dots
+            dots.forEach(dot => {
+                dot.addEventListener('click', (e) => {
+                    const slideToGo = e.target.dataset.slide;
+                    showSlide(parseInt(slideToGo));
+                });
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') {
+                    showSlide(currentSlide + 1);
+                } else if (e.key === 'ArrowLeft') {
+                    showSlide(currentSlide - 1);
+                }
+            });
+
+            // Initial setup
+            showSlide(1);
+        });
+    </script>
+</body>
+
+</html>
